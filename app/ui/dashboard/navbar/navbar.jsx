@@ -14,7 +14,7 @@ const Navbar = () => {
       className="flex items-center  p-5 rounded-xl "
       style={{ backgroundColor: "var(--bgsoft)", height: "60px" }}
     >
-      <div className="path">{pathname.split("/").pop()}</div>
+      <div className="path capitalize">{pathname.split("/").pop()}</div>
       <div className="flex ms-auto">
         <div
           className="search flex items-center p-2 rounded-xl "

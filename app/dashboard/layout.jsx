@@ -4,8 +4,8 @@ import "../ui/dashboard/dashborad.css";
 
 const layout = ({ children }) => {
   return (
-    <div className="flex flex-row" >
-      <div className="basis-1/5	p-5" style={{backgroundColor:"var(--bgsoft)"}}>
+    <div className="flex flex-row w-full" >
+      <div className="basis-1/5	" style={{backgroundColor:"var(--bgsoft)"}}>
         <Sidebar />
       </div>
 

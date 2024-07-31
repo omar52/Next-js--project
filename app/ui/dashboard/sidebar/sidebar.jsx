@@ -76,8 +76,8 @@ const Sidebar = () => {
     },
   ];
   return (
-    <div className="sticky top-5 ">
-      <div className="user flex items-center gap-10 mb-5">
+    <div className="sticky top-5 h-screen p-5">
+      <div className="user flex items-center gap-5   mb-5">
         <Image
           className=" rounded-full object-cover"
           src="/noavatar.png"
@@ -101,7 +101,7 @@ const Sidebar = () => {
             >
               {cat.title}
             </span>
-            <hr className=" mb-2" style={{ width: "35%" }} />
+            <hr className=" mb-2" />
             {cat.list.map((item) => (
               <MenuLink item={item} key={item.title} />
             ))}
