@@ -17,20 +17,21 @@ const Navbar = () => {
       <div className="path capitalize">{pathname.split("/").pop()}</div>
       <div className="flex ms-auto">
         <div
-          className="search flex items-center p-2 rounded-xl "
+          className="search flex items-center p-2 rounded-xl me-2 "
           style={{ backgroundColor: "var(--bg)" }}
         >
-          <MdSearch className="cursor-pointer me-2" />
+          <MdSearch size={25} className="cursor-pointer me-2" />
           <input
             style={{ backgroundColor: "var(--bg)" }}
             type="text"
             placeholder="Search..."
+            
           />
         </div>
         <div className="icons flex items-center">
-          <MdOutlineMessage className="mx-2" />
-          <MdNotifications className="mx-2" />
-          <MdPublic className="mx-2" />
+          <MdOutlineMessage size={25} className="mx-2" />
+          <MdNotifications size={25} className="mx-2" />
+          <MdPublic size={25} className="mx-2" />
         </div>
       </div>
     </div>

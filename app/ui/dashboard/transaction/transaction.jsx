@@ -3,7 +3,7 @@ import { MdPerson3 } from "react-icons/md";
 const Transaction = () => {
   return (
     <div
-      className="me-2 rounded-lg mt-2 p-3"
+      className=" rounded-lg mt-5 p-3"
       style={{ backgroundColor: "var(--bgsoft)" }}
     >
       <h2>Latest Transaction</h2>

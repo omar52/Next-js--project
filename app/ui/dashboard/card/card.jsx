@@ -3,7 +3,7 @@ import { MdOutlinePeopleOutline } from "react-icons/md";
 const Card = () => {
   return (
     <div
-      className="basis-1/3 text-center me-2 rounded-lg p-5 flex flex-row gap-1 items-start  "
+      className="basis-1/3 text-center  rounded-lg p-5 flex flex-row  items-start  "
       style={{ backgroundColor: "var(--bgsoft)", maxHeight: "150px" }}
     >
       <div
