@@ -5,7 +5,7 @@ import Transaction from "../ui/dashboard/transaction/transaction";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-row mt-5 gap-5">
+    <div className="flex flex-row mt-5 gap-5 min-h-s">
       <div className="left-coloum flex  flex-col basis-3/4">
         <div className="cards flex gap-5 ">
           <Card />
