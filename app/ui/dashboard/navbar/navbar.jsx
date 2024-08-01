@@ -22,6 +22,7 @@ const Navbar = () => {
         >
           <MdSearch size={25} className="cursor-pointer me-2" />
           <input
+          className="border-none outline-none"
             style={{ backgroundColor: "var(--bg)" }}
             type="text"
             placeholder="Search..."
@@ -29,9 +30,9 @@ const Navbar = () => {
           />
         </div>
         <div className="icons flex items-center">
-          <MdOutlineMessage size={25} className="mx-2" />
-          <MdNotifications size={25} className="mx-2" />
-          <MdPublic size={25} className="mx-2" />
+          <MdOutlineMessage size={25} className="mx-2 cursor-pointer" />
+          <MdNotifications size={25} className="mx-2 cursor-pointer" />
+          <MdPublic size={25} className="mx-2 cursor-pointer" />
         </div>
       </div>
     </div>

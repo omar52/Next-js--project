@@ -14,6 +14,7 @@ const Dashboard = () => {
         </div>
         <Transaction />
         <Chart />
+        
       </div>
       <div className="rightbar basis-1/4 text-center rounded-lg gap-5 flex flex-col ">
         <Rightbar />
