@@ -4,9 +4,10 @@ import UserTable from "@/app/ui/dashboard/user/table/table";
 import Link from "next/link";
 import { fetchUsers } from "@/app/lib/data";
 
-const UserPage = async () => {
-  const users = await fetchUsers();
-  console.log(users);
+const UserPage = async ({ searchParams }) => {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const {count,users} = await fetchUsers(q, page);
 
   return (
     <div
@@ -25,7 +26,7 @@ const UserPage = async () => {
         <UserTable users={users} />
       </div>
       <div className="pagination">
-        <Pagination />
+        <Pagination count={count}  />
       </div>
     </div>
   );

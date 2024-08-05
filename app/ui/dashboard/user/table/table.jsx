@@ -1,6 +1,6 @@
+import { deleteUser } from "@/app/lib/actions";
 import Image from "next/image";
 import Link from "next/link";
-import { MdPerson3 } from "react-icons/md";
 
 const UserTable = ({ users }) => {
   return (
@@ -15,40 +15,48 @@ const UserTable = ({ users }) => {
             <td>Email</td>
             <td>Created At</td>
             <td>Role</td>
-            <td>Action</td>
+            <td>Status</td>
             <td></td>
           </tr>
         </thead>
         <tbody>
           {users?.map((user) => (
-            <>
-              <tr>
-                <td className="mt-0.5 flex flex-row gap-1 items-center py-3">
-                  <Image
-                    alt="pic"
-                    width={25}
-                    height={25}
-                    href={user.img}
-                    className="w-5 h-5 rounded-full bg-gray-600    opacity-20"
-                  />
-                  {user.username}
-                </td>
-                <td className="mt-0.5">{user.email}</td>
-                <td className="mt-0.5">OCt 30 2023</td>
-                <td className="mt-0.5">client</td>
-                <td className="mt-0.5">{user.isActive}</td>
-                <td className="mt-0.5  gap-1">
-                  <Link href="/dashboard/users/userinfo">
+            <tr key={user.id}>
+              <td className="mt-0.5 flex flex-row gap-1 items-center py-3">
+                <Image
+                  alt="pic"
+                  width={25}
+                  height={25}
+                  href={user.img || "/noavatar.png"}
+                  className="w-5 h-5 rounded-full bg-gray-600    opacity-20"
+                />
+                {user.username}
+              </td>
+              <td className="mt-0.5">{user.email}</td>
+              <td className="mt-0.5">
+                {user.createdAt?.toString().slice(0, 15)}
+              </td>
+              <td className="mt-0.5">{user.isAdmin ? "Admin" : "Client"}</td>
+              <td className="mt-0.5">{user.isActive ? "Active" : "passive"}</td>
+              <td className="mt-0.5  gap-1">
+                <div className="flex">
+                  <Link href={`/dashboard/users/${user.id}`}>
                     <button className=" bg-green-700 text-white p-0.5 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400  cursor-pointer">
                       view
                     </button>
                   </Link>
-                  <button className=" bg-red-700 text-white p-0.5 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 cursor-pointer">
-                    dismiss
-                  </button>
-                </td>
-              </tr>
-            </>
+                  <form action={deleteUser}>
+                    <input type="hidden" name="id" value={user.id} />
+                    <button
+                      type="submit"
+                      className=" bg-red-700 text-white p-0.5 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 cursor-pointer"
+                    >
+                      dismiss
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

@@ -54,8 +54,8 @@ const Chart = () => {
     >
       <h2 className="mt-5 ms-4">Weekly Recap</h2>
       <LineChart
-        className="text-center w-screen"
-        width={1000}
+        className="text-center w-screen me-6"
+        width={900}
         height={450}
         data={data}
         margin={{ top: 20, right: 0, left: 20, bottom: 5 }}

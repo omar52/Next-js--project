@@ -1,6 +1,12 @@
+import { updateUser } from "@/app/lib/actions";
+import { fetchUser } from "@/app/lib/data";
 import Image from "next/image";
 
-const UserInfo = () => {
+const UserInfo = async ({ params }) => {
+  const { id } = params;
+  const user = await fetchUser(id);
+  // console.log(user);
+
   return (
     <div className="grid grid-cols-3  mt-5 gap-20">
       <div
@@ -11,18 +17,20 @@ const UserInfo = () => {
           className=" w-full p-2 rounded-2xl"
           height={50}
           width={50}
-          src="/noavatar.png"
-          alt=""
+          src={"/noavatar.png"}
+          alt="aa"
         />
-        <p className="p-2">Hello</p>
+        <p className="p-2">{user.username}</p>
       </div>
       <form
+        action={updateUser}
         className="col-span-2 flex flex-col p-5 rounded-3xl"
         style={{ backgroundColor: "var(--bgsoft)" }}
       >
+        <input type="hidden" value={user.id} name="id" />
         <label htmlFor="username">User Name</label>
         <input
-          placeholder="hello"
+          placeholder={user.username}
           className="p-3 rounded-lg"
           type="text"
           name="username"
@@ -32,7 +40,7 @@ const UserInfo = () => {
           E-mail
         </label>
         <input
-          placeholder="hello@gmail.com"
+          placeholder={user.email}
           className="p-3 rounded-lg"
           type="email"
           name="email"
@@ -42,7 +50,7 @@ const UserInfo = () => {
           Password
         </label>
         <input
-          placeholder="123456"
+          placeholder={user.password}
           className="p-3 rounded-lg"
           type="password"
           style={{ backgroundColor: "var(--bg)" }}
@@ -51,7 +59,7 @@ const UserInfo = () => {
           Phone
         </label>
         <input
-        placeholder="010000"
+          placeholder="010000"
           className="p-3 rounded-lg"
           type="number"
           style={{ backgroundColor: "var(--bg)" }}
@@ -65,7 +73,7 @@ const UserInfo = () => {
           id="address"
           style={{ backgroundColor: "var(--bg)" }}
         >
-          addres
+          {user.address}
         </textarea>
         <label className="mt-2 mb-1" htmlFor="isadmin">
           Is Admin
@@ -76,8 +84,12 @@ const UserInfo = () => {
           id="isadmin"
           style={{ backgroundColor: "var(--bg)" }}
         >
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="yes" selected={user.isAdmin}>
+            Yes
+          </option>
+          <option value="no" selected={!user.isAdmin}>
+            No
+          </option>
         </select>
         <label className="mt-2 mb-1" htmlFor="isactive">
           Is Active
@@ -88,9 +100,16 @@ const UserInfo = () => {
           id="isadmin"
           style={{ backgroundColor: "var(--bg)" }}
         >
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value="yes" selected={user.isActive}>
+            Yes
+          </option>
+          <option value="no" selected={!user.isActive}>
+            No
+          </option>
         </select>
+        <button className="mt-3 p-5 bg-green-800 text-white  text-xs font-medium me-2   rounded dark:bg-gray-700 dark:text-gray-400  cursor-pointer">
+          Updated
+        </button>
       </form>
     </div>
   );

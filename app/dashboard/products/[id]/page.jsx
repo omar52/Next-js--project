@@ -1,6 +1,12 @@
+import { updateProduct } from "@/app/lib/actions";
+import { fetchProduct } from "@/app/lib/data";
 import Image from "next/image";
 
-const ProductInfo = () => {
+const ProductInfo = async ({ params }) => {
+  const { id } = params;
+  const product = await fetchProduct(id);
+  // console.log(product);
+  
   return (
     <div className="grid grid-cols-3  mt-5 gap-20">
       <div
@@ -11,28 +17,30 @@ const ProductInfo = () => {
           className=" w-full p-2 rounded-2xl"
           height={50}
           width={50}
-          src="/noavatar.png"
-          alt=""
+          src={product.img || "/noavatar.png"}
+          alt="aa"
         />
-        <p className="p-2">i phone</p>
+        <p className="p-2">{product.title}</p>
       </div>
       <form
+        action={updateProduct}
         className="col-span-2 flex flex-col p-5 rounded-3xl"
         style={{ backgroundColor: "var(--bgsoft)" }}
       >
-        <label htmlFor="productname">Product Name</label>
+        <input type="hidden" value={product.id} name="id" />
+        <label htmlFor="title">Product Name</label>
         <input
-          placeholder="I-phone12"
+          placeholder={product.title}
           className="p-3 rounded-lg"
           type="text"
-          name="username"
+          name="title"
           style={{ backgroundColor: "var(--bg)" }}
         />
         <label className="mt-2 mb-1" htmlFor="number">
           Pice
         </label>
         <input
-          placeholder="$125"
+          placeholder={product.price}
           className="p-3 rounded-lg"
           type="number"
           name="price"
@@ -42,7 +50,7 @@ const ProductInfo = () => {
           Stock
         </label>
         <input
-          placeholder="222"
+          placeholder={product.stock}
           className="p-3 rounded-lg"
           type="number"
           name="stock"
@@ -52,13 +60,24 @@ const ProductInfo = () => {
           color
         </label>
         <input
-          placeholder="red"
+          placeholder={product.color}
           className="p-3 rounded-lg"
+          name="color"
           type="text"
           style={{ backgroundColor: "var(--bg)" }}
         />
         <label className="mt-2 mb-1" htmlFor="size">
           Size
+        </label>
+        <input
+          placeholder={product.size}
+          className="p-3 rounded-lg"
+          name="size"
+          type="text"
+          style={{ backgroundColor: "var(--bg)" }}
+        />
+        <label className="mt-2 mb-1" htmlFor="desc">
+          Description
         </label>
         <textarea
           className="p-3 rounded-lg"
@@ -66,9 +85,9 @@ const ProductInfo = () => {
           id="desc"
           style={{ backgroundColor: "var(--bg)" }}
         >
-          Description
+          {product.desc}
         </textarea>
-      
+
         <label className="mt-2 mb-1" htmlFor="isactive">
           Category
         </label>
@@ -78,9 +97,16 @@ const ProductInfo = () => {
           id="cat"
           style={{ backgroundColor: "var(--bg)" }}
         >
-          <option className="border-none outline-none p-1" value="yes">machines</option>
-          <option className="border-none outline-none p-1" value="no">clothes</option>
+          <option className="border-none outline-none p-1" value="yes">
+            machines
+          </option>
+          <option className="border-none outline-none p-1" value="no">
+            clothes
+          </option>
         </select>
+        <button  className="mt-3 p-5 bg-green-800 text-white  text-xs font-medium me-2   rounded dark:bg-gray-700 dark:text-gray-400  cursor-pointer">
+          Updated
+        </button>
       </form>
     </div>
   );
