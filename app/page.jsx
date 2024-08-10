@@ -1,5 +1,11 @@
+import Login from "./login/page";
+
 const Homepage = () => {
-  return <div>Homepage</div>;
+  return (
+    <div>
+      <Login />
+    </div>
+  );
 };
 
 export default Homepage;

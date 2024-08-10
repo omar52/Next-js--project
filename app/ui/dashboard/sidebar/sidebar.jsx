@@ -6,13 +6,16 @@ import {
   MdAttachMoney,
   MdDashboard,
   MdHelpCenter,
+  MdLogout,
   MdOutlineSettings,
   MdOutlineShoppingBag,
   MdPeople,
   MdSupervisedUserCircle,
   MdWork,
 } from "react-icons/md";
-const Sidebar = () => {
+import { auth, signOut } from "@/app/auth";
+const Sidebar = async() => {
+  const { user } = await auth();
   const menuItems = [
     {
       title: "Pages",
@@ -72,6 +75,7 @@ const Sidebar = () => {
           path: "/dashboard/help",
           icon: <MdHelpCenter />,
         },
+   
       ],
     },
   ];
@@ -80,13 +84,13 @@ const Sidebar = () => {
       <div className="user flex items-center gap-5   mb-5">
         <Image
           className=" rounded-full object-cover"
-          src="/noavatar.png"
+          src= "/noavatar.png"
           alt="user"
           width="50"
           height="50"
         />
         <div className="details flex flex-col">
-          <span className=" font-medium	">Omar Abdou</span>
+          <span className=" font-medium	">{user.username}</span>
           <span style={{ color: "var(--textsoft)" }} className=" text-xs	">
             Adminstrator
           </span>
@@ -108,6 +112,17 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <button className="flex items-center ms-3 gap-3">
+          <MdLogout />
+          Logout
+        </button>
+      </form>
     </div>
   );
 };
